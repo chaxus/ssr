@@ -29,16 +29,6 @@ export default {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", "jsx", ".json"],
-    alias: {
-      "@/lib": resolve("client/lib"),
-      "@/router": resolve("client/router"),
-      "@/pages": resolve("client/pages"),
-      "@/utils": resolve("client/utils"),
-      "@/assets": resolve("client/assets"),
-      "@/components": resolve("client/components"),
-      "@/common": resolve("client/common"),
-      "@/client": resolve("client"),
-    },
   },
   module: {
     rules: [
@@ -151,9 +141,5 @@ export default {
       ],
     }),
   ],
-  // performance: {
-  //   hints: "error",
-  //   maxAssetSize: 200000,
-  // },
   devtool: 'source-map',
 };
