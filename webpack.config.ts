@@ -17,7 +17,6 @@ const resolve = (filePath: string) => path.resolve(__dirname, filePath);
 const DIST_PATH = resolve("client/index.tsx");
 
 export default {
-  mode:'development',
   entry: {
     index: DIST_PATH,
   },
@@ -29,6 +28,7 @@ export default {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", "jsx", ".json"],
+
   },
   module: {
     rules: [
@@ -131,12 +131,13 @@ export default {
     new HtmlWebpackPlugin({
       template: "views/index.html",
       chunksSortMode: "none",
+      filename:'views/index.html'
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: resolve("client/assets/images/favicon.ico"),
-          to: resolve("public/images"),
+          to: resolve("dist/public/images"),
         },
       ],
     }),

@@ -1,4 +1,5 @@
 
 bin=./node_modules/.bin
-$bin/cross-env NODE_ENV=local $bin/nodemon ./app/index.ts
+$bin/webpack --mode development &&
+$bin/cross-env NODE_ENV=development $bin/nodemon ./app/index.ts
 
