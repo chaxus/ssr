@@ -5,10 +5,10 @@
  * @LastEditTime: 2022-04-20 20:39:17
 */
 
-import { Path } from "typescript";
 import { To } from 'react-router-dom'
 
 declare module '@/lib/*'
+declare module '@/util/*'
 declare module '@/client/*'
 declare module '@/router'
 declare module '@/pages/*'
