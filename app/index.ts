@@ -6,8 +6,7 @@
  */
 import Koa, { Context } from 'koa';
 import Router from 'koa-router';
-import { template, staticFile, openBrower } from '@/util'
-import colors from 'colors'
+import { template, staticFile, serverSuccess } from '@/util'
 import { PORT } from '@/constant'
 
 const app = new Koa();
@@ -22,8 +21,5 @@ router.get('/', (ctx: Context) => {
 
 app.use(router.routes());
 
-app.listen(PORT, () => {
-  console.info(colors.green(`===========================> Server Start at ${PORT} <===============================`))
-  openBrower()
-})
+app.listen(PORT, () => serverSuccess())
 
