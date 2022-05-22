@@ -35,6 +35,7 @@
     "auto-require-css": "^0.0.5",
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
+    "colors": "^1.4.0",
     "copy-webpack-plugin": "^10.2.4",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",

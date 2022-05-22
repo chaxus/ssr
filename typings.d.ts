@@ -8,7 +8,7 @@
 import { To } from 'react-router-dom'
 
 declare module '@/lib/*'
-declare module '@/util/*'
+declare module '@/util'
 declare module '@/client/*'
 declare module '@/router'
 declare module '@/pages/*'
@@ -17,6 +17,8 @@ declare module '@/assets/*'
 declare module '@/components/*'
 declare module '@/common/*'
 declare module '*.png'
+
+
   declare interface IResponseError {
     message: string;
     code?: number;

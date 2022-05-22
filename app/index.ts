@@ -6,7 +6,9 @@
  */
 import Koa, { Context } from 'koa';
 import Router from 'koa-router';
-import { template, staticFile } from './util'
+import { template, staticFile, openBrower } from '@/util'
+import colors from 'colors'
+import { PORT } from '@/constant'
 
 const app = new Koa();
 const router = new Router();
@@ -20,7 +22,8 @@ router.get('/', (ctx: Context) => {
 
 app.use(router.routes());
 
-app.listen(30102);
-
-console.log('Application is running on http://localhost:30102');
+app.listen(PORT, () => {
+  console.info(colors.green(`===========================> Server Start at ${PORT} <===============================`))
+  openBrower()
+})
 
