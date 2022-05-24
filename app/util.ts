@@ -15,7 +15,7 @@ import {
 import { exec } from "child_process";
 import colors from "colors";
 
-const resolve = (pathname: string) => path.resolve(__dirname, pathname);
+export const resolve = (pathname: string) => path.resolve(__dirname, pathname);
 
 const filePath =
   process.env.NODE_ENV === PRODUCTION ? PRODUCTION_DIR : DEVELOPMENT_DIR;

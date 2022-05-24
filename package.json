@@ -7,8 +7,7 @@
     "dev": "sh ./bin/dev.sh",
     "start": "sh ./bin/start.sh",
     "build": "sh ./bin/build.sh",
-    "clean": "sh ./bin/clean.sh",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "sh ./bin/clean.sh"
   },
   "repository": {
     "type": "git",

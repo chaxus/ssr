@@ -11,7 +11,7 @@ import { hydrateRoot } from 'react-dom/client';
 
 const App = () => {
     return <div>
-        测试react ssr
+        测试react ssrs
     </div>
 }
 
