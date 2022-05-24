@@ -5,12 +5,12 @@
  * @LastEditTime: 2022-04-20 21:06:00
  */
 const path = require("path");
-const LoadablePlugin = require("@loadable/webpack-plugin") ;
+const LoadablePlugin = require("@loadable/webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const WebpackBar = require('webpackbar')
-const tsImportPluginFactory = require('ts-import-plugin');
+const WebpackBar = require("webpackbar");
+const { ESBuildMinifyPlugin } = require("esbuild-loader");
 
 const resolve = (filePath: string) => path.resolve(__dirname, filePath);
 
@@ -21,14 +21,13 @@ export default {
     index: DIST_PATH,
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: "[name].bundle.js",
     path: resolve("dist"),
-    publicPath: '',
-    globalObject: 'this'
+    publicPath: "",
+    globalObject: "this",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", "jsx", ".json"],
-
   },
   module: {
     rules: [
@@ -36,37 +35,28 @@ export default {
         test: /\.(ts|tsx)?$/,
         use: [
           {
-            loader: "babel-loader"
+            loader: "babel-loader",
           },
           {
-            loader: 'ts-loader',
+            loader: "esbuild-loader",
             options: {
-              transpileOnly: true,
-              getCustomTransformers: () => ({
-                before: [
-                  tsImportPluginFactory({
-                    libraryName: 'antd',
-                    libraryDirectory: 'es',
-                    style: true,
-                  }),
-                ],
-              }),
-              compilerOptions: {
-                module: 'esnext'
-              }
+              loader: "tsx",
+              target: "es2015",
             },
           },
         ],
-        exclude: '/node_modules/',
+        exclude: "/node_modules/",
       },
       {
         test: /\.(js|jsx|tsx)?$/,
-        use: [{
-          loader:"auto-require-css",
-          options:{
-            mode:'module'
-          }
-        }],
+        use: [
+          {
+            loader: "auto-require-css",
+            options: {
+              mode: "module",
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -79,7 +69,7 @@ export default {
             options: {
               modules: {
                 localIdentName: "[local]-[hash:base64:5]",
-              }
+              },
             },
           },
         ],
@@ -95,34 +85,42 @@ export default {
             options: {
               modules: {
                 localIdentName: "[local]-[hash:base64:5]",
-              }
+              },
             },
           },
           {
             loader: "less-loader",
-            options:{
-              lessOptions: { javascriptEnabled: true }
-            }
+            options: {
+              lessOptions: { javascriptEnabled: true },
+            },
           },
         ],
       },
       {
-        test:/\.(jpg|png|gif|ico|svg|xlsx)$/,
-        type:"asset",
+        test: /\.(jpg|png|gif|ico|svg|xlsx)$/,
+        type: "asset",
         parser: {
           dataUrlCondition: {
             maxSize: 10 * 1024,
-          }
+          },
         },
-        generator:{ 
-          filename:'assets/[name].[hash:6][ext]',
-          publicPath:'./'
+        generator: {
+          filename: "assets/[name].[hash:6][ext]",
+          publicPath: "./",
         },
       },
     ],
   },
   resolveLoader: {
     modules: ["node_modules"],
+  },
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: "es2015", // Syntax to compile to (see options below for possible values)
+        css: true
+      }),
+    ],
   },
   plugins: [
     new WebpackBar(),
@@ -131,7 +129,7 @@ export default {
     new HtmlWebpackPlugin({
       template: "views/index.html",
       chunksSortMode: "none",
-      filename:'views/index.html'
+      filename: "views/index.html",
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -142,5 +140,5 @@ export default {
       ],
     }),
   ],
-  devtool: 'source-map',
+  devtool: "source-map",
 };
