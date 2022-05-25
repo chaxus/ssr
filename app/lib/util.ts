@@ -1,7 +1,13 @@
+/*
+ * @Author: ran
+ * @Date: 2022-05-25 12:09:59
+ * @LastEditors: ran
+ * @LastEditTime: 2022-05-25 12:28:20
+ */
 import * as fs from "fs";
 import * as path from "path";
 import serve from "koa-static";
-import content from "@/ssr";
+import content from "@/extend/serverRender";
 import {
   PRODUCTION,
   PRODUCTION_DIR,

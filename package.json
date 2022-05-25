@@ -45,6 +45,7 @@
     "nodemon": "^2.0.16",
     "redux-devtools-extension": "^2.13.9",
     "style-loader": "^3.3.1",
+    "transmitnotice": "0.0.6",
     "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.3",
     "webpack": "^5.72.0",
